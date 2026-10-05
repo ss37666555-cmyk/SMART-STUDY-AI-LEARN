@@ -1,0 +1,18 @@
+{
+  "name": "smart-study-learn",
+  "version": "1.1.0",
+  "description": "Smart Study AI / Smart Study Learn - Interactive educational study platform with AI tutor, notes summarization, quizzes, and progress analytics.",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "test:watch": "node --test --watch tests/*.test.js",
+    "test:verbose": "node --test --test-reporter=spec tests/*.test.js"
+  },
+  "keywords": [
+    "education",
+    "smart-study-ai",
+    "smart-study-learn",
+    "vanilla-js"
+  ],
+  "author": "Smart Study AI Team",
+  "license": "MIT"
+}

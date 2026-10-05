@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Study AI — Learn Smarter. Study Better.</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Smart Study AI - Fast Demo Prototype for College Project. Learn Smarter, Study Better with AI Tutor, Notes Summarizer, Quizzes, and Progress Tracking.">
+</head>
+<body>
+  <div class="app-container">
+    <!-- MOBILE TOPBAR -->
+    <header class="mobile-header">
+      <div class="brand-badge">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <span class="brand-title">Smart Study AI</span>
+      </div>
+      <button id="mobileMenuBtn" class="icon-btn" aria-label="Toggle navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">
+          <div class="logo-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <h2>Smart Study AI</h2>
+            <p class="tagline">Learn Smarter. Study Better.</p>
+          </div>
+        </div>
+        <button id="sidebarCloseBtn" class="icon-btn mobile-only" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="9"></rect>
+            <rect x="14" y="3" width="7" height="5"></rect>
+            <rect x="14" y="12" width="7" height="9"></rect>
+            <rect x="3" y="16" width="7" height="5"></rect>
+          </svg>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-tab="ai-tutor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>AI Tutor</span>
+          <span class="nav-badge">Live</span>
+        </button>
+        <button class="nav-item" data-tab="summarizer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span>Notes Summarizer</span>
+        </button>
+        <button class="nav-item" data-tab="quiz">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="12 8 8 12 12 16 12 8"></polygon>
+            <path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10"></path>
+          </svg>
+          <span>Quiz</span>
+          <span class="nav-pill" id="navQuizPill">5 Qs</span>
+        </button>
+        <button class="nav-item" data-tab="progress">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 20V10"></path>
+            <path d="M12 20V4"></path>
+            <path d="M6 20v-6"></path>
+          </svg>
+          <span>Progress</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="avatar">AM</div>
+          <div class="user-info">
+            <span class="user-name">Alex Morgan</span>
+            <span class="user-role">Computer Science • Year 2</span>
+          </div>
+        </div>
+        <button class="btn-reset-demo" id="resetDemoBtn" title="Reset all demo data to default">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+            <path d="M21 3v5h-5"></path>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+            <path d="M3 21v-5h5"></path>
+          </svg>
+          <span>Reset Demo</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+
+      <!-- ==================== 1. DASHBOARD TAB ==================== -->
+      <section class="tab-panel active" id="tab-dashboard">
+        <header class="panel-header">
+          <div class="welcome-box">
+            <div class="welcome-text">
+              <span class="badge-pill">🎓 College Demo Edition</span>
+              <h1>Welcome back, Alex! 👋</h1>
+              <p class="subtitle">"Learn Smarter. Study Better." — Pick up right where you left off.</p>
+            </div>
+            <div class="streak-highlight">
+              <div class="flame-icon">🔥</div>
+              <div class="streak-num" id="dashStreakHeader">7</div>
+              <div class="streak-label">Day Streak</div>
+            </div>
+          </div>
+        </header>
+
+        <!-- DASHBOARD STATS GRID -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon-wrap streak-bg">
+              <span>🔥</span>
+            </div>
+            <div class="stat-meta">
+              <span class="stat-label">Study Streak</span>
+              <div class="stat-value-wrap">
+                <span class="stat-value" id="dashStreak">7</span>
+                <span class="stat-unit">days</span>
+              </div>
+              <div class="stat-subtext text-success">Active streak! Don't break it today.</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap score-bg">
+              <span>🎯</span>
+            </div>
+            <div class="stat-meta">
+              <span class="stat-label">Average Quiz Score</span>
+              <div class="stat-value-wrap">
+                <span class="stat-value" id="dashQuizScore">85</span>
+                <span class="stat-unit">%</span>
+              </div>
+              <div class="stat-subtext text-info">+5% from last week</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap topics-bg">
+              <span>📚</span>
+            </div>
+            <div class="stat-meta">
+              <span class="stat-label">Completed Topics</span>
+              <div class="stat-value-wrap">
+                <span class="stat-value" id="dashTopics">12</span>
+                <span class="stat-unit">/ 15</span>
+              </div>
+              <div class="stat-subtext">80% of semester target</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap hours-bg">
+              <span>⏱️</span>
+            </div>
+            <div class="stat-meta">
+              <span class="stat-label">Study Hours</span>
+              <div class="stat-value-wrap">
+                <span class="stat-value" id="dashHours">18</span>
+                <span class="stat-unit">h</span>
+              </div>
+              <div class="stat-subtext text-purple">Top 10% in your class</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUICK ACTION BUTTONS -->
+        <div class="section-block">
+          <div class="section-title-row">
+            <h3>⚡ Quick Actions</h3>
+            <span class="section-hint">Instant access to your study toolkit</span>
+          </div>
+          <div class="quick-actions-grid">
+            <button class="action-card action-ai" id="actionAskAI">
+              <div class="action-icon">🤖</div>
+              <div class="action-info">
+                <h4>Ask AI</h4>
+                <p>Get instant concept explanations, analogies & examples</p>
+              </div>
+              <span class="action-arrow">→</span>
+            </button>
+
+            <button class="action-card action-summary" id="actionSummarize">
+              <div class="action-icon">📝</div>
+              <div class="action-info">
+                <h4>Summarize Notes</h4>
+                <p>Convert messy lecture notes into structured key points</p>
+              </div>
+              <span class="action-arrow">→</span>
+            </button>
+
+            <button class="action-card action-quiz" id="actionTakeQuiz">
+              <div class="action-icon">🎯</div>
+              <div class="action-info">
+                <h4>Take Quiz</h4>
+                <p>Test your knowledge with 5 rapid interactive questions</p>
+              </div>
+              <span class="action-arrow">→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- RECENT ACTIVITY & RECOMMENDED TOPICS -->
+        <div class="dashboard-columns">
+          <div class="content-card">
+            <div class="card-header">
+              <h4>🎯 Recommended Topics Today</h4>
+              <span class="tag-pill">Personalized</span>
+            </div>
+            <div class="topic-list">
+              <div class="topic-item">
+                <div class="topic-status done">✓</div>
+                <div class="topic-details">
+                  <h5>Photosynthesis & Chloroplast Reactions</h5>
+                  <span>Biology • Completed 2 hrs ago</span>
+                </div>
+                <button class="btn-sm btn-ghost ask-topic-btn" data-query="Explain photosynthesis simply">Review</button>
+              </div>
+              <div class="topic-item">
+                <div class="topic-status current">●</div>
+                <div class="topic-details">
+                  <h5>Newton's Laws of Motion & Momentum</h5>
+                  <span>Physics • In Progress</span>
+                </div>
+                <button class="btn-sm btn-primary ask-topic-btn" data-query="Explain Newton's Laws of Motion with real examples">Study Now</button>
+              </div>
+              <div class="topic-item">
+                <div class="topic-status pending">○</div>
+                <div class="topic-details">
+                  <h5>Binary Search & Time Complexity</h5>
+                  <span>Computer Science • Up Next</span>
+                </div>
+                <button class="btn-sm btn-ghost ask-topic-btn" data-query="How does binary search work and what is its time complexity?">Preview</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-card">
+            <div class="card-header">
+              <h4>📢 Recent Study Milestones</h4>
+              <span class="tag-pill tag-accent">Live Feed</span>
+            </div>
+            <div class="activity-feed">
+              <div class="activity-entry">
+                <span class="activity-badge badge-fire">🔥</span>
+                <div class="activity-info">
+                  <p class="activity-title">Reached 7-Day Study Streak!</p>
+                  <span class="activity-time">Today, 08:30 AM</span>
+                </div>
+              </div>
+              <div class="activity-entry">
+                <span class="activity-badge badge-quiz">🎯</span>
+                <div class="activity-info">
+                  <p class="activity-title">Scored 85% on Science & Tech Quiz</p>
+                  <span class="activity-time">Yesterday, 04:15 PM</span>
+                </div>
+              </div>
+              <div class="activity-entry">
+                <span class="activity-badge badge-doc">📝</span>
+                <div class="activity-info">
+                  <p class="activity-title">Generated Biology Summary (3 key terms saved)</p>
+                  <span class="activity-time">Sep 12, 11:20 AM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 2. AI TUTOR TAB ==================== -->
+      <section class="tab-panel" id="tab-ai-tutor">
+        <div class="panel-header-simple">
+          <div>
+            <h2>🤖 AI Study Tutor</h2>
+            <p class="subtitle">Ask any concept, formula, or exam topic. Get crystal-clear breakdowns.</p>
+          </div>
+          <button class="btn-outline btn-sm" id="clearChatBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            <span>Clear Chat</span>
+          </button>
+        </div>
+
+        <div class="chat-container">
+          <!-- QUICK PROMPT CHIPS -->
+          <div class="prompt-chips">
+            <span class="chips-label">Try asking:</span>
+            <button class="chip-btn" data-prompt="Explain photosynthesis simply">🌱 Photosynthesis</button>
+            <button class="chip-btn" data-prompt="Explain Newton's Laws of Motion with real examples">🍎 Newton's Laws</button>
+            <button class="chip-btn" data-prompt="What is the difference between Mitosis and Meiosis?">🧬 Mitosis vs Meiosis</button>
+            <button class="chip-btn" data-prompt="Explain Big-O notation simply">💻 Big-O Notation</button>
+          </div>
+
+          <!-- MESSAGES CONTAINER -->
+          <div class="chat-messages" id="chatMessages">
+            <!-- Initial AI Greeting -->
+            <div class="chat-bubble ai">
+              <div class="bubble-avatar">🤖</div>
+              <div class="bubble-body">
+                <div class="bubble-sender">Smart Study AI Tutor <span class="bubble-time">Just now</span></div>
+                <div class="bubble-content">
+                  <p>Hello Alex! 👋 I'm your Smart Study AI tutor.</p>
+                  <p>I can break down complex college concepts, explain formulas simply, or provide real-world examples. What are you studying today?</p>
+                </div>
+                <div class="bubble-actions">
+                  <button class="tutor-action-btn" data-action="explain">Explain Simply</button>
+                  <button class="tutor-action-btn" data-action="example">Give Example</button>
+                  <button class="tutor-action-btn" data-action="ask">Ask Another Question</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TYPING INDICATOR -->
+          <div class="typing-indicator hidden" id="typingIndicator">
+            <div class="bubble-avatar">🤖</div>
+            <div class="typing-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <!-- CHAT INPUT -->
+          <form class="chat-input-form" id="chatForm">
+            <input 
+              type="text" 
+              id="chatInput" 
+              placeholder="Type your question... e.g. 'Explain photosynthesis simply'" 
+              autocomplete="off"
+              required
+            >
+            <button type="submit" id="sendBtn" class="btn-primary btn-send" aria-label="Send question">
+              <span>Send</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ==================== 3. NOTES SUMMARIZER TAB ==================== -->
+      <section class="tab-panel" id="tab-summarizer">
+        <div class="panel-header-simple">
+          <div>
+            <h2>📝 Smart Notes Summarizer</h2>
+            <p class="subtitle">Paste raw lecture notes, textbooks or transcripts to instantly generate high-yield study points.</p>
+          </div>
+          <button class="btn-outline btn-sm" id="loadSampleNotesBtn">
+            <span>📋 Paste Sample Notes</span>
+          </button>
+        </div>
+
+        <div class="summarizer-grid">
+          <!-- INPUT CARD -->
+          <div class="content-card summarizer-input-card">
+            <div class="card-header">
+              <h4>Input Notes</h4>
+              <button class="btn-ghost btn-sm" id="clearNotesBtn">Clear</button>
+            </div>
+            <div class="textarea-wrapper">
+              <textarea 
+                id="notesInput" 
+                placeholder="Paste your lecture notes, textbook excerpt, or topic draft here... (or click 'Paste Sample Notes' above for a fast test)"
+                rows="10"
+              ></textarea>
+              <div class="textarea-footer">
+                <span id="charCount">0 characters</span>
+                <span class="note-hint">Tip: Works best with 2-3 paragraphs</span>
+              </div>
+            </div>
+            <div class="summarizer-btn-row">
+              <button class="btn-primary btn-block" id="generateSummaryBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                <span>Generate Summary</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- OUTPUT CARD -->
+          <div class="content-card summarizer-output-card" id="summaryResultCard">
+            <div class="card-header">
+              <h4>Generated Study Summary</h4>
+              <div class="card-header-actions">
+                <button class="btn-ghost btn-sm" id="copySummaryBtn" title="Copy summary to clipboard">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- EMPTY STATE -->
+            <div class="summary-empty-state" id="summaryEmptyState">
+              <div class="empty-icon">📑</div>
+              <h5>No summary generated yet</h5>
+              <p>Paste your notes on the left and click "Generate Summary" to extract key takeaways, terminology, and quick revision cards.</p>
+            </div>
+
+            <!-- LOADING SPINNER -->
+            <div class="summary-loading hidden" id="summaryLoading">
+              <div class="spinner"></div>
+              <p>Analyzing notes with Smart Study AI...</p>
+            </div>
+
+            <!-- RESULT CONTENT -->
+            <div class="summary-content hidden" id="summaryContent">
+              <!-- Key Points -->
+              <div class="summary-section">
+                <div class="summary-section-title">
+                  <span>📌</span>
+                  <h5>Key Points</h5>
+                </div>
+                <ul class="key-points-list" id="summaryKeyPoints">
+                  <!-- Injected via JS -->
+                </ul>
+              </div>
+
+              <!-- Important Terms -->
+              <div class="summary-section">
+                <div class="summary-section-title">
+                  <span>🏷️</span>
+                  <h5>Important Terms</h5>
+                </div>
+                <div class="terms-grid" id="summaryTerms">
+                  <!-- Injected via JS -->
+                </div>
+              </div>
+
+              <!-- Quick Revision -->
+              <div class="summary-section">
+                <div class="summary-section-title">
+                  <span>⚡</span>
+                  <h5>Quick Revision</h5>
+                </div>
+                <div class="revision-box" id="summaryRevision">
+                  <!-- Injected via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 4. QUIZ TAB ==================== -->
+      <section class="tab-panel" id="tab-quiz">
+        <div class="panel-header-simple">
+          <div>
+            <h2>🎯 Interactive Knowledge Quiz</h2>
+            <p class="subtitle">Test your grasp on high-yield college topics with instant scoring.</p>
+          </div>
+          <div class="quiz-badge-header">
+            <span class="quiz-cat-pill" id="quizCategoryPill">Science & Technology</span>
+          </div>
+        </div>
+
+        <div class="quiz-wrapper">
+          <!-- ACTIVE QUIZ CARD -->
+          <div class="content-card quiz-card" id="quizActiveCard">
+            <!-- QUIZ PROGRESS BAR -->
+            <div class="quiz-header-bar">
+              <div class="quiz-step-info">
+                <span class="step-badge" id="quizStepText">Question 1 of 5</span>
+                <span class="quiz-timer">⏱️ Self-paced</span>
+              </div>
+              <div class="quiz-progress-track">
+                <div class="quiz-progress-fill" id="quizProgressFill" style="width: 20%;"></div>
+              </div>
+            </div>
+
+            <!-- QUESTION TEXT -->
+            <div class="quiz-question-container">
+              <h3 class="quiz-question-title" id="quizQuestionText">Loading question...</h3>
+            </div>
+
+            <!-- OPTIONS LIST -->
+            <div class="quiz-options-grid" id="quizOptionsContainer">
+              <!-- Options populated by JS -->
+            </div>
+
+            <!-- FOOTER WITH NEXT BUTTON -->
+            <div class="quiz-footer">
+              <span class="quiz-tip" id="quizTip">Select an answer above to proceed</span>
+              <button class="btn-primary" id="quizNextBtn" disabled>
+                <span>Next Question</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- QUIZ RESULT SCREEN (HIDDEN INITIALLY) -->
+          <div class="content-card quiz-card quiz-result-card hidden" id="quizResultCard">
+            <div class="result-header">
+              <div class="result-icon-celebration" id="resultCelebration">🎉</div>
+              <h2 id="resultTitle">Quiz Completed!</h2>
+              <p class="subtitle" id="resultSubtitle">Great effort! Here is your performance breakdown:</p>
+            </div>
+
+            <div class="result-metrics">
+              <div class="result-score-circle">
+                <div class="circle-inner">
+                  <span class="result-percent-val" id="resultPercent">80%</span>
+                  <span class="result-percent-lbl">Score</span>
+                </div>
+              </div>
+
+              <div class="result-stats-col">
+                <div class="result-stat-box success-box">
+                  <span class="result-stat-icon">✓</span>
+                  <div>
+                    <strong id="resultCorrectCount">4</strong>
+                    <span>Correct</span>
+                  </div>
+                </div>
+                <div class="result-stat-box danger-box">
+                  <span class="result-stat-icon">✕</span>
+                  <div>
+                    <strong id="resultIncorrectCount">1</strong>
+                    <span>Incorrect</span>
+                  </div>
+                </div>
+                <div class="result-stat-box info-box">
+                  <span class="result-stat-icon">📊</span>
+                  <div>
+                    <strong id="resultTotalScore">4 / 5</strong>
+                    <span>Total Score</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ANSWER REVIEW ACCORDION -->
+            <div class="quiz-review-section">
+              <h4>Review Your Answers</h4>
+              <div class="review-items-list" id="quizReviewList">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+            <div class="result-actions">
+              <button class="btn-primary" id="retryQuizBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="1 4 1 10 7 10"></polyline>
+                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                </svg>
+                <span>Retry Quiz</span>
+              </button>
+              <button class="btn-outline" id="goToDashboardFromQuizBtn">
+                <span>View Dashboard</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 5. PROGRESS TAB ==================== -->
+      <section class="tab-panel" id="tab-progress">
+        <div class="panel-header-simple">
+          <div>
+            <h2>📈 Study Progress & Analytics</h2>
+            <p class="subtitle">Track your weekly milestones, streaks, accuracy, and study time.</p>
+          </div>
+          <button class="btn-primary btn-sm" id="logStudyBtn">
+            <span>+ Log Study Session</span>
+          </button>
+        </div>
+
+        <div class="progress-grid">
+          <!-- BIG METRIC CARDS -->
+          <div class="progress-metric-card">
+            <div class="metric-top">
+              <span class="metric-icon">🔥</span>
+              <span class="metric-title">Study Streak</span>
+            </div>
+            <div class="metric-big-num" id="progStreak">7 <span class="unit">days</span></div>
+            <p class="metric-desc">Longest streak: <strong>14 days</strong></p>
+            <!-- 7-DAY CALENDAR INDICATORS -->
+            <div class="week-days-row" id="streakWeekDays">
+              <div class="day-bubble active"><span>M</span>✓</div>
+              <div class="day-bubble active"><span>T</span>✓</div>
+              <div class="day-bubble active"><span>W</span>✓</div>
+              <div class="day-bubble active"><span>T</span>✓</div>
+              <div class="day-bubble active"><span>F</span>✓</div>
+              <div class="day-bubble active"><span>S</span>✓</div>
+              <div class="day-bubble active today"><span>S</span>🔥</div>
+            </div>
+          </div>
+
+          <div class="progress-metric-card">
+            <div class="metric-top">
+              <span class="metric-icon">🎯</span>
+              <span class="metric-title">Average Quiz Score</span>
+            </div>
+            <div class="metric-big-num" id="progQuizScore">85<span class="unit">%</span></div>
+            <p class="metric-desc">Based on recent quizzes taken</p>
+            <div class="metric-progress-bar">
+              <div class="metric-progress-fill score-fill" id="progScoreBar" style="width: 85%;"></div>
+            </div>
+            <span class="progress-sub-stat">Grade Rating: <strong>A (Distinction)</strong></span>
+          </div>
+
+          <div class="progress-metric-card">
+            <div class="metric-top">
+              <span class="metric-icon">📚</span>
+              <span class="metric-title">Topics Completed</span>
+            </div>
+            <div class="metric-big-num" id="progTopics">12 <span class="unit">/ 15</span></div>
+            <p class="metric-desc">3 topics remaining for this syllabus unit</p>
+            <div class="metric-progress-bar">
+              <div class="metric-progress-fill topics-fill" id="progTopicsBar" style="width: 80%;"></div>
+            </div>
+            <span class="progress-sub-stat">Progress: <strong>80% Completed</strong></span>
+          </div>
+
+          <div class="progress-metric-card">
+            <div class="metric-top">
+              <span class="metric-icon">⏱️</span>
+              <span class="metric-title">Study Hours</span>
+            </div>
+            <div class="metric-big-num" id="progHours">18<span class="unit">h</span></div>
+            <p class="metric-desc">Target: 20 hours / month</p>
+            <div class="metric-progress-bar">
+              <div class="metric-progress-fill hours-fill" id="progHoursBar" style="width: 90%;"></div>
+            </div>
+            <span class="progress-sub-stat">Remaining: <strong>2 hours to target</strong></span>
+          </div>
+        </div>
+
+        <!-- STUDY HOURS CHART VISUALIZATION (CSS/SVG) -->
+        <div class="content-card study-chart-card">
+          <div class="card-header">
+            <h4>Weekly Study Hours Distribution</h4>
+            <span class="tag-pill">Past 7 Days</span>
+          </div>
+          <div class="bar-chart-container">
+            <div class="chart-bar-group">
+              <div class="chart-bar-fill" style="height: 60%;" title="Mon: 2.5h"></div>
+              <span class="bar-label">Mon</span>
+              <span class="bar-val">2.5h</span>
+            </div>
+            <div class="chart-bar-group">
+              <div class="chart-bar-fill" style="height: 45%;" title="Tue: 1.8h"></div>
+              <span class="bar-label">Tue</span>
+              <span class="bar-val">1.8h</span>
+            </div>
+            <div class="chart-bar-group">
+              <div class="chart-bar-fill" style="height: 75%;" title="Wed: 3.2h"></div>
+              <span class="bar-label">Wed</span>
+              <span class="bar-val">3.2h</span>
+            </div>
+            <div class="chart-bar-group">
+              <div class="chart-bar-fill" style="height: 50%;" title="Thu: 2.0h"></div>
+              <span class="bar-label">Thu</span>
+              <span class="bar-val">2.0h</span>
+            </div>
+            <div class="chart-bar-group">
+              <div class="chart-bar-fill" style="height: 85%;" title="Fri: 3.8h"></div>
+              <span class="bar-label">Fri</span>
+              <span class="bar-val">3.8h</span>
+            </div>
+            <div class="chart-bar-group">
+              <div class="chart-bar-fill" style="height: 40%;" title="Sat: 1.5h"></div>
+              <span class="bar-label">Sat</span>
+              <span class="bar-val">1.5h</span>
+            </div>
+            <div class="chart-bar-group active-day">
+              <div class="chart-bar-fill" style="height: 70%;" title="Sun: 3.2h"></div>
+              <span class="bar-label">Sun</span>
+              <span class="bar-val">3.2h</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <nav class="mobile-bottom-nav">
+      <button class="mobile-nav-btn active" data-tab="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="9"></rect>
+          <rect x="14" y="3" width="7" height="5"></rect>
+          <rect x="14" y="12" width="7" height="9"></rect>
+          <rect x="3" y="16" width="7" height="5"></rect>
+        </svg>
+        <span>Dashboard</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="ai-tutor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span>AI Tutor</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="summarizer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+        </svg>
+        <span>Summary</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="quiz">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="12 8 8 12 12 16 12 8"></polygon>
+        </svg>
+        <span>Quiz</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="progress">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 20V10"></path>
+          <path d="M12 20V4"></path>
+          <path d="M6 20v-6"></path>
+        </svg>
+        <span>Progress</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="utils.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
